@@ -1,0 +1,45 @@
+body,
+input,
+button,
+select,
+textarea {
+  font-size: small;
+}
+
+table {
+	width: 100%;
+	font-weight: normal;
+}
+
+table tr {
+	border-bottom: 0.25px solid #000000;
+}
+
+table th {
+	font-weight:normal;
+}
+
+input {
+	border: 0;
+	background-color: transparent;
+}
+
+input:hover {
+	cursor: pointer;
+}
+
+label {
+	transform: translate(0px,0.75px);
+}
+
+label:hover {
+	cursor: pointer;
+}
+
+a {
+	color: #000000;
+}
+
+#uploadcolumn {
+    height: 100vh;
+}
