@@ -14,9 +14,11 @@ app.use(cors())
 
 // Creating Cache
 let cache = {};
+const infoArr = []
 
 // Show home page
 app.get("/", (req, res) => {
+    checkDir()
     fs.createReadStream(__dirname + "/public/index.html").pipe(res);
 })
 
@@ -28,7 +30,8 @@ app.post("/upload", (req, res) => {
         if (err) {
             console.log(err);
         } else {
-            checkDir();
+            checkDir()
+            checkInfo();
             res.redirect("/");
         }
     });
@@ -41,6 +44,7 @@ function checkDir() {
             res.status(404);
             console.log("Directory not found");
         }
+        let filesubmit = files
         let data = JSON.stringify(files);
         fs.writeFile(__dirname + "/dataBase.json", data, 'utf8', (err) => {
             if (err) {
@@ -52,28 +56,34 @@ function checkDir() {
     })
 }
 
-// function checkInfo() {
-//     fs.readdir(__dirname + "/files/", (err, files) => {
-//         if (err) {
-//             res.status(404);
-//             console.log("Directory not found");
-//         }
-//         let fileInfo = []
-//         for (let i = 0; i < files.length; i++) {
-//             fs.stat(__dirname + "/files/" + files[i], (err, stats) => {
-//                 fileInfo.push(stats);
-//             });
-//         }
-//         console.log(fileInfo)
-//         fs.writeFile(__dirname + "/dataInfo.json", fileInfo, 'utf8', (err) => {
-//             if (err) {
-//                 console.log(err);
-//             } else {
-//                 console.log("file info was saved");
-//             }
-//         })
-//     })
-// }
+function checkInfo() {
+    fs.readdir(__dirname + "/files/", (err, files) => {
+        if (err) {
+            res.status(404);
+            console.log("Directory not found");
+        }
+        const filesubmit = files;
+        for (i=0; i < files.length; i++) {
+            fs.stat(__dirname + "/files/" + files[i], (err, stats) => {
+                infoArr.push(stats.size);
+            })
+        }
+        console.log(infoArr);
+    })
+}
+
+// const infoArr = []
+//                 for (i = 0; i < files.length; i++) {
+//                     fs.stat(__dirname + "/files/" + files[i], (err, stats) => {
+//                         infoArr.push(stats.size);
+//                         fs.writeFile(__dirname + "/infoBase.json", JSON.stringify(infoArr), 'utf8', (err) => {
+//                             if (err) {
+//                                 console.log(err);
+//                             }
+//                             console.log("file info was saved")
+//                         })
+//                     })
+//                 }
 
 // Access json files for database
 app.get("/dataBase.json", (req, res) => {

@@ -14,13 +14,23 @@ $(document).ready(function () {
         for (i = 0; i < data.length; i++) {
             $("tbody").append(
                 `<tr>
-            <td><i>${data[i]}</i></td>
+            <td class="filename" id="${data[i]}"><i>${data[i]}</i></td>
             <td></td>
             <td><a href="http://localhost:3000/files/${data[i]}"><i class="fas fa-arrow-down"></i></a></td>
             <td><a href="http://localhost:3000/delete/${data[i]}"><i class="fas fa-times"></i></a></td>
             `
             )
         }
+    })
+
+    $("body").on("click", '.filename', function () {
+        let image = $(this).text();
+        $("#preview").html(`<div>PREVIEW</div>`);
+        if (image.slice(-3) === "jpg" || image.slice(-3) === "png") {
+            $("#preview").append(`<img src="${image}">`)
+        }   if (image.slice(-3) === "pdf" || image.slice(-3) === "mp4") {
+            $("#preview").append(`<embed src="${image}">`)
+        } 
     })
 
 })

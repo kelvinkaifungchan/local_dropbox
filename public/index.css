@@ -19,6 +19,10 @@ table th {
 	font-weight:normal;
 }
 
+table .filename{
+	cursor: pointer;
+}
+
 input {
 	border: 0;
 	background-color: transparent;
@@ -42,4 +46,17 @@ a {
 
 #uploadcolumn {
     height: 100vh;
+}
+
+#preview {
+	height: 50%;
+}
+
+#preview img{
+	width: 100%;
+}
+
+#preview embed{
+	height: 100%;
+	width: 100%;
 }
