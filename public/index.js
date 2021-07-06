@@ -10,12 +10,11 @@ $(document).ready(function () {
     })
 
     // Show files in database in table
-    $.get("http://localhost:3000/dataBase.json", function (data) {
+    $.get("http://localhost:3000/upload", function (data) {
         for (i = 0; i < data.length; i++) {
             $("tbody").append(
                 `<tr>
             <td class="filename" id="${data[i]}"><i>${data[i]}</i></td>
-            <td></td>
             <td><a href="http://localhost:3000/files/${data[i]}"><i class="fas fa-arrow-down"></i></a></td>
             <td><a href="http://localhost:3000/delete/${data[i]}"><i class="fas fa-times"></i></a></td>
             `
@@ -28,8 +27,14 @@ $(document).ready(function () {
         $("#preview").html(`<div>PREVIEW</div>`);
         if (image.slice(-3) === "jpg" || image.slice(-3) === "png") {
             $("#preview").append(`<img src="${image}">`)
-        }   if (image.slice(-3) === "pdf" || image.slice(-3) === "mp4") {
-            $("#preview").append(`<embed src="${image}">`)
+        } if (image.slice(-3) === "pdf") {
+            $("#preview").append(`<iframe src="${image}">`)
+        } if (image.slice(-3) === "mp4") {
+            $("#preview").append(`
+            <video controls>
+            <source src="${image}" type="video/mp4">
+            </video>
+            `)
         } 
     })
 

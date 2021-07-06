@@ -56,7 +56,12 @@ a {
 	width: 100%;
 }
 
-#preview embed{
+#preview iframe{
+	height: 100%;
+	width: 100%;
+}
+
+#preview video{
 	height: 100%;
 	width: 100%;
 }

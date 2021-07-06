@@ -20,7 +20,7 @@
                 <form action="/upload" method="POST" enctype="multipart/form-data"
                     class="d-flex justify-content-between">
                     <label class="col-12">
-                        <input type="file" name="filesubmit" id="filesubmit" hidden>
+                        <input type="file" name="filesubmit" id="filesubmit" multiple hidden>
                         <div>SELECT</div>
                     </label><br>
                     <input type="submit" value="UPLOAD" class="col">
@@ -31,8 +31,7 @@
             <table>
                 <thead>
                     <tr>
-                        <th>File Name</th>
-                        <th>File Size</th>
+                        <th>FILES</th>
                         <th></th>
                         <th></th>
                     </tr>
@@ -44,10 +43,10 @@
         <div class="col-3 p-5">
             <div>
                 HELP<br>
-                1. Select files to be uploaded<br>
-                2. Click upload to upload files to server<br><br>
+                1. Select a file<br>
+                2. Click upload to upload file to server<br><br>
                 Click file name to show preview<br>
-                Preview supports: jpeg, png, pdf and mp4 files <br><br>
+                Preview supports: jpg, png, pdf and mp4 files <br><br>
                 Click <i class="fas fa-arrow-down"></i> to download file<br>
                 Click <i class="fas fa-times"></i> to delete file
             </div>
