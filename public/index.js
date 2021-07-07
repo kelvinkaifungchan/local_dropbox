@@ -22,10 +22,11 @@ $(document).ready(function () {
         }
     })
 
+    //Preview files
     $("body").on("click", '.filename', function () {
         let image = $(this).text();
         $("#preview").html(`<div>PREVIEW</div>`);
-        if (image.slice(-3) === "jpg" || image.slice(-3) === "png") {
+        if (image.slice(-3) === "jpg" || image.slice(-4) === "jpeg" || image.slice(-3) === "png") {
             $("#preview").append(`<img src="${image}">`)
         } if (image.slice(-3) === "pdf") {
             $("#preview").append(`<iframe src="${image}">`)
@@ -37,5 +38,4 @@ $(document).ready(function () {
             `)
         } 
     })
-
 })

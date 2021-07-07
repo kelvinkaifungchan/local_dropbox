@@ -19,6 +19,7 @@ app.get("/", (req, res) => {
 app.post("/upload", (req, res) => {
     let file = req.files.filesubmit;
     if (file instanceof Array) {
+        console.log("Uploaded an array")
         for (i = 0; i < file.length; i++) {
             let filePath = __dirname + "/files/" + file[i].name;
             file[i].mv(filePath), (err) => {
@@ -26,7 +27,7 @@ app.post("/upload", (req, res) => {
                     console.log(err);
                 } else {
                     console.log("file was uploaded")
-                    res.redirect("/");
+                    // res.redirect("/");
                 }
             }
         }
@@ -43,13 +44,25 @@ app.post("/upload", (req, res) => {
     }
 });
 
-// Setup cache to show file names on screen
+// Reading directory
+function update() {
+    console.log("Updating file list");
+    return new Promise((resolve, reject) => {
+        fs.readdir(__dirname + "/files/", (err, files) => {
+            if (err) {
+                reject(err)
+            }
+            console.log(files);
+            resolve(files);
+        })
+    })
+}
+
+
+// Send file names to front end
 app.get("/upload", (req, res) => {
-    fs.readdir(__dirname + "/files/", (err, files) => {
-        if (err) {
-            res.status(404);
-            console.log("Directory not found");
-        }
+    update().then((files) => {
+        console.log("Updated file list");
         res.send(files);
     })
 });
@@ -72,8 +85,8 @@ app.get("/delete/:filename", (req, res) => {
         if (err) {
             console.log(err);
         } else {
-            res.redirect("/");
             console.log('delete successful');
+            res.redirect("/");
         }
     })
 })
