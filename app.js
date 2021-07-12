@@ -161,7 +161,6 @@ app.get("/files/:filename", (req, res) => {
         console.log(body);
         res.send(body);
         console.log("Download completed")
-        res.redirect("/");
     })
     .catch((err) => {
         console.log("Error: ", err);
