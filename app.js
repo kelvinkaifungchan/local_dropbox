@@ -76,7 +76,7 @@ app.post("/upload", (req, res) => {
                     console.log("Error: ", err);
                 })
         }
-    } 
+    }
     //Uploading single file
     else {
         console.log("uploading single file");
@@ -150,20 +150,22 @@ app.get("/upload", (req, res) => {
 });
 
 // Download files with cache
-app.get("/files/:filename", (req,res) => {
+app.get("/files/:filename", (req, res) => {
     //check if file exists on cache
-    if(cache[req.params.filename] == null) {
+    if (cache[req.params.filename] == null) {
         console.log("reading from file");
         cache[req.params.filename] = readFile(req.params.filename)
-        cache[req.params.filename].then((body) => {
-            console.log(body);
-            res.send(body);
-            res.redirect("/");
-        })
-        .catch((err) => {
-            res.status(500)
-        })
     }
+    //download from cache
+    cache[req.params.filename].then((body) => {
+        console.log(body);
+        res.send(body);
+        console.log("Download completed")
+        res.redirect("/");
+    })
+    .catch((err) => {
+        console.log("Error: ", err);
+    })
 })
 
 // // Download files with res.download
