@@ -1,12 +1,19 @@
 # Local Dropbox
 This project sets up a local server and allows the user to upload and store files from the server. Additional features also allows the user to download and delete files from the server.
 
+<img src="public/assets/Demo_1.png">
+
+<img src="public/assets/Demo_2.png">
+
+<img src="public/assets/Demo_3.png">
+
 ## Installation
-1. Clone the repository
-2. Open terminal and change directory to the cloned repository
-3. Type "npm install" + enter
-4. Type "node app.js" + enter
-5. Open browser and type in the url "localhost:3000"
+1. Open CLI
+2. Clone the repo
+3. ```cd``` into cloned repo
+4. Execute: ```npm install```
+5. Execute: ```node app.js```
+6. Open "localhost:3000" in browser
 
 ## Help
 - "Select" to select files for upload
